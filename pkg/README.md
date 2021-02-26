@@ -2,7 +2,7 @@
 
 We want to see whether the memory becomes invalid after many allocations.
 
-It looks like there are are issues when you keep a reference to a view and not request a new view.
+It looks like there are no issues.
 
 ```
 big1 WasmUint8Array { ptr: 1001114128 } Uint8Array(1000000000) [
@@ -29,9 +29,7 @@ big2 WasmUint8Array { ptr: 2001114160 } Uint8Array(1000000000) [
   0, 0, 0, 0,
   ... 999999900 more items
 ]
-=> incorrect
-big1 WasmUint8Array { ptr: 1001114128 } Uint8Array(0) []
-big2 WasmUint8Array { ptr: 2001114160 } Uint8Array(1000000000) [
+big3 WasmUint8Array { ptr: -1293853104 } Uint8Array(1000000000) [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -43,7 +41,6 @@ big2 WasmUint8Array { ptr: 2001114160 } Uint8Array(1000000000) [
   0, 0, 0, 0,
   ... 999999900 more items
 ]
-=> correct
 big1 WasmUint8Array { ptr: 1001114128 } Uint8Array(1000000000) [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
